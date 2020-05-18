@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
   end
   
   helper_method :current_user, :logged_in?
+  
+  def authenticate_user
+    if @current_user == nil
+    redirect_to("/login")
+    end
+  end
 end
