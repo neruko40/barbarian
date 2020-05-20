@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Barbarian</title>
+    <title><%= yield(:title) %> | Barbarian</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -16,11 +15,11 @@
     
     <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
       <div class="container">
-        <%= link_to root_path do %>
-          <span><%= image_tag "icons/logo.png", class: "navbar-brand logo" %></span>
-        <% end %>
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
+            <%= link_to pages_after_path do %>
+              <span><%= image_tag "icons/logo.png", class: "navbar-brand logo", id: "logo" %></span>
+            <% end %>
             <li>
               <%= link_to favorites_index_path do %>
                 <%= image_tag "icons/heart.png" %>
@@ -37,6 +36,9 @@
               <% end %>
             </li>
           <% else %>
+            <%= link_to root_path do %>
+              <span><%= image_tag "icons/logo.png", class: "navbar-brand logo" %></span>
+            <% end %>
             <li>
               <%= link_to new_user_path do %>
                 <%= image_tag "icons/register.png" %>
